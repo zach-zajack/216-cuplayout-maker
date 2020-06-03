@@ -6,7 +6,11 @@ LEADERBOARD_ROOT = "https://www.chadsoft.co.uk/time-trials"
 LEADERBOARDS = "https://www.chadsoft.co.uk/time-trials/ctgp-leaderboards.html"
 NAME_FILTERS = ["- Glitch", "- Shortcut", "Star Slope", "N64 Rainbow Road"]
 # rest are flame by default
-VEHICLES = {"34" => :Magi, "30" => :Magi, "22" => :Mach, "21" => :Mach}
+VEHICLES = {
+  "34" => :Magi,  "30" => :Magi, # one for dolphin dasher
+  "22" => :Mach,  "21" => :Mach, # one for bullet bike
+  "23" => :Flame, "32" => :Spear
+}
 
 def open_website(url)
   begin
@@ -50,7 +54,7 @@ def get_slot_info
 end
 
 def get_vehicle_info
-  @cuplayout = {:Magi => [], :Mach => [], :Flame => []}
+  @cuplayout = {:Magi => [], :Mach => [], :Spear => [], :Flame => []}
   tracks = open_website(LEADERBOARDS)
   loop do
     row_index = tracks.index("<tr search-key")
